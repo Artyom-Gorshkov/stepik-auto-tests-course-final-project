@@ -1,4 +1,6 @@
 from .base_page import BasePage
+from .locators import LoginPageLocators
+from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class LoginPage(BasePage):
@@ -8,13 +10,10 @@ class LoginPage(BasePage):
         self.should_be_register_form()
 
     def should_be_login_url(self):
-        # реализуйте проверку на корректный url адрес
-        assert True
+        assert 'login' in WebDriver.current_url
 
     def should_be_login_form(self):
-        # реализуйте проверку, что есть форма логина
-        assert True
+        assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "No login form on the page"
 
     def should_be_register_form(self):
-        # реализуйте проверку, что есть форма регистрации на странице
-        assert True
+        assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), "No register form on the page"
